@@ -1,0 +1,46 @@
+{block content}
+
+<div>
+    <div class="d-flex align-items-center my-3">
+        <div>List of Users</div>
+        <a n:if="$user->isInRole('admin')" n:href="add" class="ms-auto">
+            <button type="button" class="btn btn-primary">
+                Add
+            </button>
+        </a>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+
+            {if $user->isInRole('admin')}
+                <th>Actions</th>
+            {/if}
+        </tr>
+        {foreach $users as $u}
+            <tr>
+                <td>{$u->id}</td>
+                <td>{$u->username}</td>
+                <td>{$u->email}</td>
+
+                {if $user->isInRole('admin')}
+                    <td>
+                        <a n:href="edit, 'userId' => $u->id">
+                            <button type="button" class="btn btn-success ml-2">
+                                Update
+                            </button>
+                        </a>
+                        <a n:href="delete $u->id" onclick="return confirm('Are you sure you want to delete the user?')">
+                            <button type="button" class="btn btn-danger ml-2">
+                                Del
+                            </button>
+                        </a>
+                    </td>
+                {/if}
+            </tr>
+        {/foreach}
+    </table>
+</div>

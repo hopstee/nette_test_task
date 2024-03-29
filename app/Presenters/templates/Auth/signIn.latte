@@ -1,0 +1,26 @@
+{block content}
+
+<form n:name=signInForm class=auth-form>
+    <h1 class="h3 mb-3 font-weight-normal">SignIn</h1>
+    <ul class="list-group mb-3" n:ifcontent>
+        <li
+                n:foreach="$form->getOwnErrors() as $error"
+                class="list-group-item list-group-item-danger"
+        >
+            {$error}
+        </li>
+    </ul>
+
+    <label n:name=email class="sr-only" for="inputEmail">Email:</label>
+    <input n:name=email type="text" id="inputEmail" class="form-control mb-3" placeholder="Email" required autofocus>
+    <span class=error n:ifcontent>{inputError email}</span>
+
+    <label n:name=password class="sr-only" for="inputPassword">Password:</label>
+    <input n:name=password type="password" id="inputPassword" class="form-control mb-3" placeholder="Password" required>
+    <span class=error n:ifcontent>{inputError password}</span>
+
+    <div class="d-grid gap-2">
+        <input n:name=signin class="btn btn-md btn-primary btn-block">
+        <a class="btn btn-sm btn-link btn-block" n:href="Auth:SignUp">SignUp</a>
+    </div>
+</form>

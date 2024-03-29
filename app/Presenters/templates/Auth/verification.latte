@@ -1,0 +1,23 @@
+{block content}
+
+<form n:name=verificationForm class=auth-form>
+    <h1 class="h3 mb-3 font-weight-normal">Verification</h1>
+    <ul class="list-group mb-3" n:ifcontent>
+        <li
+                n:foreach="$form->getOwnErrors() as $error"
+                class="list-group-item list-group-item-danger"
+        >
+            {$error}
+        </li>
+    </ul>
+
+    <input n:name=email type="text" hidden>
+
+    <label n:name=verificationCode class="sr-only" for="inputCode">Code:</label>
+    <input n:name=verificationCode type="text" id="inputCode" class="form-control mb-3" placeholder="123456" required autofocus>
+    <span class=error n:ifcontent>{inputError verificationCode}</span>
+
+    <div class="d-grid gap-2">
+        <input n:name=confirm class="btn btn-md btn-primary btn-block">
+    </div>
+</form>
