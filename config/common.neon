@@ -21,3 +21,8 @@ security:
     authentication:
         expiration: 30 minutes
         storage: session
+
+
+http:
+	headers:
+		X-XSS-Protection: '1; mode=block'
